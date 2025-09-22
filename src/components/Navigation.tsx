@@ -9,9 +9,12 @@ import {
   Menu, 
   X,
   Leaf,
-  MessageSquare
+  MessageSquare,
+  User,
+  LogOut
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 const navigationItems = [
   {
@@ -49,8 +52,14 @@ const navigationItems = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, profile, signOut } = useAuth();
   
   const isActive = (path: string) => location.pathname === path;
+
+  const handleSignOut = async () => {
+    await signOut();
+    setIsOpen(false);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -88,17 +97,37 @@ export default function Navigation() {
             })}
           </div>
 
-          {/* Chat Button & Mobile Menu */}
+          {/* Right Side Actions */}
           <div className="flex items-center space-x-3">
-            <Button 
-              className="btn-hero hidden sm:flex items-center space-x-2"
-              asChild
-            >
-              <Link to="/ai-assistant">
-                <MessageSquare className="w-4 h-4" />
-                <span>Quick Chat</span>
-              </Link>
-            </Button>
+            {user ? (
+              <>
+                <div className="hidden lg:flex items-center space-x-2 text-sm">
+                  <span className="text-muted-foreground">Welcome,</span>
+                  <span className="font-medium text-foreground">
+                    {profile?.username || user.email?.split('@')[0]}
+                  </span>
+                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleSignOut}
+                  className="hidden sm:flex items-center space-x-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Sign Out</span>
+                </Button>
+              </>
+            ) : (
+              <Button 
+                className="btn-hero hidden sm:flex items-center space-x-2"
+                asChild
+              >
+                <Link to="/auth">
+                  <User className="w-4 h-4" />
+                  <span>Login</span>
+                </Link>
+              </Button>
+            )}
             
             {/* Mobile Menu Button */}
             <Button
@@ -138,14 +167,30 @@ export default function Navigation() {
             })}
             
             <div className="pt-2 border-t border-border">
-              <Link
-                to="/ai-assistant"
-                className="flex items-center space-x-3 px-4 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                <MessageSquare className="w-5 h-5" />
-                <span>AI Assistant</span>
-              </Link>
+              {user ? (
+                <div className="space-y-2">
+                  <div className="px-4 py-2 text-sm text-muted-foreground">
+                    Welcome, {profile?.username || user.email?.split('@')[0]}
+                  </div>
+                  <Button
+                    variant="outline"
+                    onClick={handleSignOut}
+                    className="w-full justify-start"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="flex items-center space-x-3 px-4 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <User className="w-5 h-5" />
+                  <span>Login</span>
+                </Link>
+              )}
             </div>
           </div>
         )}
