@@ -8,89 +8,122 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Agricultural Design System - Living Earth Palette */
+    --background: 48 100% 97%;
+    --foreground: 120 100% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 120 100% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 120 100% 8%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Hero Green - Deep Forest */
+    --primary: 122 39% 31%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Harvest Gold - Warm Sunlight */
+    --secondary: 45 94% 51%;
+    --secondary-foreground: 120 100% 8%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Rich Earth - Fertile Soil */
+    --muted: 48 100% 97%;
+    --muted-foreground: 16 25% 38%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Sky Blue - Clear Horizons */
+    --accent: 207 90% 42%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Warning Red for alerts */
+    --destructive: 4 90% 58%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 120 20% 88%;
+    --input: 120 20% 88%;
+    --ring: 122 39% 31%;
+
+    /* Agricultural Gradients */
+    --gradient-success: linear-gradient(135deg, hsl(122 39% 31%), hsl(45 94% 51%));
+    --gradient-sky: linear-gradient(180deg, hsl(207 90% 42%), hsl(207 90% 62%));
+    --gradient-earth: linear-gradient(135deg, hsl(16 25% 38%), hsl(48 100% 97%));
+
+    /* Monsoon Teal & Sunrise Orange */
+    --monsoon-teal: 174 100% 29%;
+    --sunrise-orange: 33 100% 50%;
+    --wheat-beige: 48 100% 95%;
+
+    /* Shadows & Effects */
+    --shadow-gentle: 0 4px 20px hsl(122 39% 31% / 0.08);
+    --shadow-harvest: 0 8px 32px hsl(45 94% 51% / 0.15);
+    --transition-natural: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark mode agricultural colors */
+    --background: 120 20% 6%;
+    --foreground: 48 100% 95%;
+    --primary: 45 94% 51%;
+    --secondary: 122 39% 41%;
+    --accent: 207 90% 52%;
+    --card: 120 20% 8%;
+    --card-foreground: 48 100% 95%;
+    --popover: 120 20% 8%;
+    --popover-foreground: 48 100% 95%;
+    --muted: 120 15% 12%;
+    --muted-foreground: 48 20% 70%;
+    --border: 120 15% 15%;
+    --input: 120 15% 15%;
+    --ring: 45 94% 51%;
+    --destructive: 4 90% 65%;
+    --destructive-foreground: 0 0% 98%;
+  }
+}
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+@layer utilities {
+  /* Agricultural Gradient Classes */
+  .bg-gradient-success {
+    background: var(--gradient-success);
+  }
+  
+  .bg-gradient-sky {
+    background: var(--gradient-sky);
+  }
+  
+  .bg-gradient-earth {
+    background: var(--gradient-earth);
+  }
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+  /* Natural Motion Classes */
+  .transition-natural {
+    transition: var(--transition-natural);
+  }
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+  /* Agricultural Component Variants */
+  .btn-hero {
+    @apply bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-natural hover:scale-105;
+  }
+  
+  .btn-earth {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-natural;
+  }
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+  .card-field {
+    @apply bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-natural;
+  }
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  .input-soil {
+    @apply bg-background border-2 border-input rounded-lg px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-natural;
   }
 }
 
@@ -100,6 +133,10 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold leading-tight;
   }
 }

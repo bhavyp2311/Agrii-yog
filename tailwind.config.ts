@@ -47,6 +47,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Agricultural color extensions
+        monsoon: "hsl(var(--monsoon-teal))",
+        sunrise: "hsl(var(--sunrise-orange))",
+        wheat: "hsl(var(--wheat-beige))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -65,25 +69,32 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" }
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" }
         },
+        "grow": {
+          "0%": { transform: "scale(0.8)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" }
+        },
+        "harvest-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(45 94% 51% / 0.3)" },
+          "50%": { boxShadow: "0 0 30px hsl(45 94% 51% / 0.6)" }
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-6px)" }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "grow": "grow 0.4s ease-out",
+        "harvest-glow": "harvest-glow 2s ease-in-out infinite",
+        "float": "float 3s ease-in-out infinite"
       },
     },
   },
