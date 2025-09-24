@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import Navigation from "@/components/Navigation";
 import { 
   Send, 
   Mic, 
@@ -127,7 +128,9 @@ export default function AIAssistant() {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="pt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -249,6 +252,7 @@ export default function AIAssistant() {
             })}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

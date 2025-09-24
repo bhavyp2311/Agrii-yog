@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Navigation from "@/components/Navigation";
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -105,7 +106,9 @@ export default function Market() {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -303,6 +306,7 @@ export default function Market() {
             </Card>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

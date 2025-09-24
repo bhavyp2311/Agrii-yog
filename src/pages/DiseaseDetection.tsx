@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Navigation from "@/components/Navigation";
 import { 
   Camera, 
   Upload, 
@@ -80,7 +81,9 @@ export default function DiseaseDetection() {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="pt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -278,6 +281,7 @@ export default function DiseaseDetection() {
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { 
   Brain, 
   Camera, 
@@ -11,41 +12,43 @@ import {
   Leaf,
   MessageSquare,
   User,
-  LogOut
+  LogOut,
+  Globe
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const navigationItems = [
   {
-    name: "AI Assistant",
+    nameKey: "nav.aiAssistant" as const,
     href: "/ai-assistant",
     icon: Brain,
-    description: "Smart farming guidance"
+    descriptionKey: "features.smartFarming" as const
   },
   {
-    name: "Disease Detection",
+    nameKey: "nav.diseaseDetection" as const,
     href: "/disease-detection", 
     icon: Camera,
-    description: "Crop health analysis"
+    descriptionKey: "features.diseaseDetection" as const
   },
   {
-    name: "Market Hub",
+    nameKey: "nav.marketHub" as const,
     href: "/market",
     icon: TrendingUp,
-    description: "Prices & trading"
+    descriptionKey: "features.marketInsights" as const
   },
   {
-    name: "Community",
+    nameKey: "nav.community" as const,
     href: "/community",
     icon: Users,
-    description: "Connect with farmers"
+    descriptionKey: "features.communitySupport" as const
   },
   {
-    name: "Analytics",
+    nameKey: "nav.analytics" as const,
     href: "/analytics",
     icon: BarChart3,
-    description: "Farm insights"
+    descriptionKey: "features.marketInsights" as const
   }
 ];
 
@@ -53,6 +56,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { user, profile, signOut } = useAuth();
+  const { t, language, setLanguage, availableLanguages } = useLanguage();
   
   const isActive = (path: string) => location.pathname === path;
 
@@ -82,7 +86,7 @@ export default function Navigation() {
               const Icon = item.icon;
               return (
                 <Link
-                  key={item.name}
+                  key={item.nameKey}
                   to={item.href}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-natural ${
                     isActive(item.href)
@@ -91,7 +95,7 @@ export default function Navigation() {
                   }`}
                 >
                   <Icon className="w-4 h-4" />
-                  <span>{item.name}</span>
+                  <span>{t(item.nameKey)}</span>
                 </Link>
               );
             })}
@@ -99,10 +103,29 @@ export default function Navigation() {
 
           {/* Right Side Actions */}
           <div className="flex items-center space-x-3">
+            {/* Language Selector */}
+            <Select value={language} onValueChange={setLanguage}>
+              <SelectTrigger className="w-auto h-8 border-none bg-transparent p-1">
+                <div className="flex items-center space-x-1">
+                  <Globe className="w-4 h-4" />
+                  <SelectValue />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                {availableLanguages.map((lang) => (
+                  <SelectItem key={lang.code} value={lang.code}>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-sm">{lang.nativeName}</span>
+                      <span className="text-xs text-muted-foreground">({lang.name})</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             {user ? (
               <>
                 <div className="hidden lg:flex items-center space-x-2 text-sm">
-                  <span className="text-muted-foreground">Welcome,</span>
+                  <span className="text-muted-foreground">{t('nav.welcome')},</span>
                   <span className="font-medium text-foreground">
                     {profile?.username || user.email?.split('@')[0]}
                   </span>
@@ -114,7 +137,7 @@ export default function Navigation() {
                   className="hidden sm:flex items-center space-x-2"
                 >
                   <LogOut className="w-4 h-4" />
-                  <span>Sign Out</span>
+                  <span>{t('nav.signOut')}</span>
                 </Button>
               </>
             ) : (
@@ -124,7 +147,7 @@ export default function Navigation() {
               >
                 <Link to="/auth">
                   <User className="w-4 h-4" />
-                  <span>Login</span>
+                  <span>{t('nav.login')}</span>
                 </Link>
               </Button>
             )}
@@ -148,7 +171,7 @@ export default function Navigation() {
               const Icon = item.icon;
               return (
                 <Link
-                  key={item.name}
+                  key={item.nameKey}
                   to={item.href}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-natural ${
                     isActive(item.href)
@@ -159,8 +182,8 @@ export default function Navigation() {
                 >
                   <Icon className="w-5 h-5" />
                   <div>
-                    <div className="font-medium">{item.name}</div>
-                    <div className="text-xs opacity-70">{item.description}</div>
+                    <div className="font-medium">{t(item.nameKey)}</div>
+                    <div className="text-xs opacity-70">{t(item.descriptionKey)}</div>
                   </div>
                 </Link>
               );
@@ -170,7 +193,7 @@ export default function Navigation() {
               {user ? (
                 <div className="space-y-2">
                   <div className="px-4 py-2 text-sm text-muted-foreground">
-                    Welcome, {profile?.username || user.email?.split('@')[0]}
+                    {t('nav.welcome')}, {profile?.username || user.email?.split('@')[0]}
                   </div>
                   <Button
                     variant="outline"
@@ -178,7 +201,7 @@ export default function Navigation() {
                     className="w-full justify-start"
                   >
                     <LogOut className="w-4 h-4 mr-2" />
-                    Sign Out
+                    {t('nav.signOut')}
                   </Button>
                 </div>
               ) : (
@@ -188,7 +211,7 @@ export default function Navigation() {
                   onClick={() => setIsOpen(false)}
                 >
                   <User className="w-5 h-5" />
-                  <span>Login</span>
+                  <span>{t('nav.login')}</span>
                 </Link>
               )}
             </div>
