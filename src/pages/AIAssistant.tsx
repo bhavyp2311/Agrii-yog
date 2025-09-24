@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
+import { useLanguage } from "@/hooks/useLanguage";
 import { 
   Send, 
   Mic, 
@@ -48,10 +49,11 @@ const quickSuggestions = [
 ];
 
 export default function AIAssistant() {
+  const { t } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Hello! I'm your AI farming assistant. I'm here to help you with crop advice, weather insights, market trends, and any farming questions you have. How can I help you today?",
+      content: t('ai.greeting'),
       sender: 'ai',
       timestamp: new Date(),
     }
@@ -138,12 +140,12 @@ export default function AIAssistant() {
             <Leaf className="w-6 h-6 text-white" />
             <span className="text-white font-semibold">AI Farming Assistant</span>
           </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            Ask Me Anything About Farming
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Get instant answers to your agricultural questions, from planting schedules to market insights.
-          </p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              {t('ai.title')}
+            </h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              {t('ai.subtitle')}
+            </p>
         </div>
 
         {/* Chat Container */}
@@ -200,7 +202,7 @@ export default function AIAssistant() {
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask about crops, weather, markets, or any farming question..."
+                placeholder={t('ai.placeholder')}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
                 className="input-soil flex-1"
               />
@@ -226,7 +228,7 @@ export default function AIAssistant() {
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
             <Lightbulb className="w-5 h-5 text-secondary" />
-            <h3 className="text-lg font-semibold text-foreground">Quick Questions</h3>
+            <h3 className="text-lg font-semibold text-foreground">{t('ai.quickQuestions')}</h3>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -11,7 +11,6 @@ import AIAssistant from "./pages/AIAssistant";
 import DiseaseDetection from "./pages/DiseaseDetection";
 import Market from "./pages/Market";
 import Community from "./pages/Community";
-import Analytics from "./pages/Analytics";
 import Demo from "./pages/Demo";
 import NotFound from "./pages/NotFound";
 
@@ -32,7 +31,6 @@ const App = () => (
             <Route path="/disease-detection" element={<DiseaseDetection />} />
             <Route path="/market" element={<Market />} />
             <Route path="/community" element={<Community />} />
-            <Route path="/analytics" element={<Analytics />} />
             <Route path="/demo" element={<Demo />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

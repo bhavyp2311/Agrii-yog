@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
+import { useLanguage } from "@/hooks/useLanguage";
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -95,6 +96,8 @@ const nearbyMarkets = [
 ];
 
 export default function Market() {
+  const { t } = useLanguage();
+  
   const getDemandColor = (demand: string) => {
     switch (demand) {
       case 'Very High': return 'bg-green-100 text-green-800 border-green-200';
@@ -116,12 +119,12 @@ export default function Market() {
             <TrendingUp className="w-6 h-6 text-white" />
             <span className="text-white font-semibold">Market Intelligence Hub</span>
           </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            Real-Time Agricultural Markets
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Stay updated with current prices, market trends, and find the best places to sell your produce.
-          </p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              {t('market.title')}
+            </h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              {t('market.subtitle')}
+            </p>
         </div>
 
         {/* Market Overview */}
@@ -179,10 +182,10 @@ export default function Market() {
           {/* Current Prices */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-foreground">Current Market Prices</h2>
+              <h2 className="text-xl font-semibold text-foreground">{t('market.currentPrices')}</h2>
               <Button variant="outline" size="sm">
                 <BarChart3 className="w-4 h-4 mr-2" />
-                View Charts
+                {t('common.viewCharts')}
               </Button>
             </div>
 
@@ -230,7 +233,7 @@ export default function Market() {
 
           {/* Nearby Markets */}
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-foreground">Nearby Markets</h2>
+            <h2 className="text-xl font-semibold text-foreground">{t('market.nearbyMarkets')}</h2>
 
             <div className="space-y-4">
               {nearbyMarkets.map((market, index) => (
@@ -267,7 +270,7 @@ export default function Market() {
                       </div>
                       <Button size="sm" variant="outline">
                         <Truck className="w-3 h-3 mr-1" />
-                        Contact
+                        {t('common.contact')}
                       </Button>
                     </div>
                   </div>
@@ -283,7 +286,7 @@ export default function Market() {
                     <TrendingUp className="w-4 h-4 text-secondary-foreground" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Price Alerts</h4>
+                    <h4 className="font-semibold text-foreground">{t('market.priceAlerts')}</h4>
                     <p className="text-xs text-muted-foreground">Get notified of price changes</p>
                   </div>
                 </div>
@@ -300,7 +303,7 @@ export default function Market() {
                 </div>
 
                 <Button size="sm" variant="outline" className="w-full">
-                  Manage Alerts
+                  {t('common.manageAlerts')}
                 </Button>
               </div>
             </Card>

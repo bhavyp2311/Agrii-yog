@@ -1,27 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Leaf, Shield, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/hooks/useLanguage";
 import heroImage from "@/assets/hero-agriculture.jpg";
 
 const features = [
   {
     icon: Leaf,
-    title: "AI-Powered Insights",
-    description: "Smart recommendations tailored to your crops"
+    titleKey: "features.smartFarming" as const,
+    descriptionKey: "features.smartFarmingDesc" as const
   },
   {
     icon: Shield,
-    title: "Disease Detection",
-    description: "Early identification and treatment suggestions"
+    titleKey: "features.diseaseDetection" as const,
+    descriptionKey: "features.diseaseDetectionDesc" as const
   },
   {
     icon: TrendingUp,
-    title: "Market Intelligence",
-    description: "Real-time prices and profit optimization"
+    titleKey: "features.marketInsights" as const,
+    descriptionKey: "features.marketInsightsDesc" as const
   }
 ];
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -48,14 +51,10 @@ export default function Hero() {
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Grow Smarter with
-                <span className="block bg-gradient-success bg-clip-text text-transparent">
-                  AI-Powered Farming
-                </span>
+                {t('hero.title')}
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl">
-                Transform your agricultural practices with intelligent insights, real-time market data, 
-                and a supportive farming community. Technology that grows with you.
+                {t('hero.subtitle')}
               </p>
             </div>
 
@@ -63,7 +62,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="btn-hero group" asChild>
                 <Link to="/ai-assistant">
-                  Start Growing Smarter
+                  {t('hero.startGrowing')}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -76,7 +75,7 @@ export default function Hero() {
               >
                 <Link to="/demo">
                   <Play className="w-5 h-5 mr-2" />
-                  Watch Demo
+                  {t('hero.watchDemo')}
                 </Link>
               </Button>
             </div>
@@ -85,15 +84,15 @@ export default function Hero() {
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border/50">
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-secondary">50K+</div>
-                <div className="text-sm text-muted-foreground">Active Farmers</div>
+                <div className="text-sm text-muted-foreground">{t('hero.activeFarmers')}</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-secondary">25%</div>
-                <div className="text-sm text-muted-foreground">Avg. Yield Increase</div>
+                <div className="text-sm text-muted-foreground">{t('hero.yieldIncrease')}</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-secondary">95%</div>
-                <div className="text-sm text-muted-foreground">Satisfaction Rate</div>
+                <div className="text-sm text-muted-foreground">{t('hero.satisfaction')}</div>
               </div>
             </div>
           </div>
@@ -104,7 +103,7 @@ export default function Hero() {
               const Icon = feature.icon;
               return (
                 <div 
-                  key={feature.title}
+                  key={feature.titleKey}
                   className={`card-field animate-grow hover:scale-105 ${
                     index === 1 ? 'ml-8' : index === 2 ? 'ml-4' : ''
                   }`}
@@ -116,10 +115,10 @@ export default function Hero() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-foreground mb-2">
-                        {feature.title}
+                        {t(feature.titleKey)}
                       </h3>
                       <p className="text-muted-foreground">
-                        {feature.description}
+                        {t(feature.descriptionKey)}
                       </p>
                     </div>
                   </div>
@@ -134,14 +133,14 @@ export default function Hero() {
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={feature.title} className="card-field">
+              <div key={feature.titleKey} className="card-field">
                 <div className="flex items-center space-x-4">
                   <div className="w-10 h-10 bg-gradient-success rounded-lg flex items-center justify-center flex-shrink-0">
                     <Icon className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    <h3 className="font-semibold text-foreground">{t(feature.titleKey)}</h3>
+                    <p className="text-sm text-muted-foreground">{t(feature.descriptionKey)}</p>
                   </div>
                 </div>
               </div>

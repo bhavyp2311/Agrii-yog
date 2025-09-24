@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Navigation from "@/components/Navigation";
+import { useLanguage } from "@/hooks/useLanguage";
 import { 
   Users, 
   MessageCircle, 
@@ -89,6 +90,8 @@ const topContributors = [
 ];
 
 export default function Community() {
+  const { t } = useLanguage();
+  
   const getBadgeColor = (badge: string) => {
     switch (badge) {
       case 'Gold': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
@@ -109,12 +112,12 @@ export default function Community() {
             <Users className="w-6 h-6 text-white" />
             <span className="text-white font-semibold">Farming Community</span>
           </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            Connect, Learn, and Grow Together
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of farmers sharing knowledge, experiences, and solutions for modern agriculture.
-          </p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              {t('community.title')}
+            </h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              {t('community.subtitle')}
+            </p>
         </div>
 
         {/* Actions Bar */}
@@ -123,14 +126,14 @@ export default function Community() {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input 
-                placeholder="Search discussions, topics, or experts..."
+                placeholder={t('common.search')}
                 className="input-soil pl-10"
               />
             </div>
           </div>
           <Button className="btn-hero">
             <Plus className="w-4 h-4 mr-2" />
-            Start Discussion
+            {t('common.startDiscussion')}
           </Button>
         </div>
 
@@ -140,10 +143,10 @@ export default function Community() {
             {/* Navigation Tabs */}
             <div className="flex space-x-1 bg-muted rounded-lg p-1">
               <button className="flex-1 bg-background text-foreground font-medium py-2 px-4 rounded-md text-sm">
-                Recent Discussions
+                {t('community.recentDiscussions')}
               </button>
               <button className="flex-1 text-muted-foreground font-medium py-2 px-4 rounded-md text-sm hover:bg-background/50">
-                Expert Answers
+                {t('community.expertAnswers')}
               </button>
               <button className="flex-1 text-muted-foreground font-medium py-2 px-4 rounded-md text-sm hover:bg-background/50">
                 My Posts
@@ -211,7 +214,7 @@ export default function Community() {
                         </button>
                       </div>
                       <Button size="sm" variant="outline">
-                        Join Discussion
+                        {t('common.joinDiscussion')}
                       </Button>
                     </div>
                   </div>
@@ -223,7 +226,7 @@ export default function Community() {
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <Award className="w-5 h-5 text-secondary" />
-                <h3 className="text-lg font-semibold text-foreground">Recent Expert Answers</h3>
+                <h3 className="text-lg font-semibold text-foreground">{t('community.expertAnswers')}</h3>
               </div>
               
               {expertAnswers.map((answer) => (
@@ -290,10 +293,10 @@ export default function Community() {
 
             {/* Top Contributors */}
             <Card className="card-field">
-              <h4 className="font-semibold text-foreground mb-4 flex items-center">
-                <Award className="w-4 h-4 text-secondary mr-2" />
-                Top Contributors
-              </h4>
+                <h4 className="font-semibold text-foreground mb-4 flex items-center">
+                  <Award className="w-4 h-4 text-secondary mr-2" />
+                  {t('community.topContributors')}
+                </h4>
               <div className="space-y-3">
                 {topContributors.map((contributor, index) => (
                   <div key={index} className="flex items-center justify-between">
@@ -320,7 +323,7 @@ export default function Community() {
             <Card className="card-field">
               <h4 className="font-semibold text-foreground mb-4 flex items-center">
                 <Leaf className="w-4 h-4 text-secondary mr-2" />
-                Trending Topics
+                {t('community.trendingTopics')}
               </h4>
               <div className="space-y-2">
                 <Badge variant="outline" className="text-xs bg-accent/10 text-accent mr-1 mb-1">#organic-farming</Badge>

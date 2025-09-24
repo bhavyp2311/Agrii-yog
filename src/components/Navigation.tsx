@@ -43,12 +43,6 @@ const navigationItems = [
     href: "/community",
     icon: Users,
     descriptionKey: "features.communitySupport" as const
-  },
-  {
-    nameKey: "nav.analytics" as const,
-    href: "/analytics",
-    icon: BarChart3,
-    descriptionKey: "features.marketInsights" as const
   }
 ];
 

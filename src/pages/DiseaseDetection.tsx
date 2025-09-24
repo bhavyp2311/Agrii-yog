@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
+import { useLanguage } from "@/hooks/useLanguage";
 import { 
   Camera, 
   Upload, 
@@ -42,6 +43,7 @@ const mockResults: DetectionResult = {
 };
 
 export default function DiseaseDetection() {
+  const { t } = useLanguage();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [results, setResults] = useState<DetectionResult | null>(null);
@@ -91,12 +93,12 @@ export default function DiseaseDetection() {
             <Scan className="w-6 h-6 text-white" />
             <span className="text-white font-semibold">Disease Detection</span>
           </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            AI-Powered Crop Health Analysis
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Upload or capture photos of your crops to get instant disease identification and treatment recommendations.
-          </p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              {t('disease.title')}
+            </h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              {t('disease.subtitle')}
+            </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -104,7 +106,7 @@ export default function DiseaseDetection() {
           <div className="space-y-6">
             <Card className="card-field">
               <div className="text-center space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">Upload Crop Image</h3>
+                <h3 className="text-lg font-semibold text-foreground">{t('disease.uploadTitle')}</h3>
                 
                 {selectedImage ? (
                   <div className="space-y-4">
@@ -130,12 +132,12 @@ export default function DiseaseDetection() {
                         {isAnalyzing ? (
                           <>
                             <Scan className="w-4 h-4 mr-2 animate-spin" />
-                            Analyzing...
+                            {t('common.loading')}
                           </>
                         ) : (
                           <>
                             <Scan className="w-4 h-4 mr-2" />
-                            Analyze Image
+                            {t('common.analyze')}
                           </>
                         )}
                       </Button>
@@ -166,7 +168,7 @@ export default function DiseaseDetection() {
             <Card className="card-field">
               <h4 className="font-semibold text-foreground mb-3 flex items-center">
                 <Leaf className="w-5 h-5 text-secondary mr-2" />
-                Photography Tips
+                {t('disease.tips')}
               </h4>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <p>• Take photos in good natural light</p>
@@ -185,7 +187,7 @@ export default function DiseaseDetection() {
                 <div className="text-center py-8">
                   <Scan className="w-12 h-12 text-secondary mx-auto mb-4 animate-spin" />
                   <h3 className="text-lg font-semibold text-foreground mb-2">Analyzing Image</h3>
-                  <p className="text-muted-foreground">AI is examining your crop for potential diseases...</p>
+                  <p className="text-muted-foreground">{t('disease.analyzing')}</p>
                 </div>
               </Card>
             )}
@@ -196,7 +198,7 @@ export default function DiseaseDetection() {
                 <Card className="card-field">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-lg font-semibold text-foreground">Detection Results</h3>
+                      <h3 className="text-lg font-semibold text-foreground">{t('disease.results')}</h3>
                       <p className="text-sm text-muted-foreground">AI Analysis Complete</p>
                     </div>
                     <Badge variant="outline" className={getSeverityColor(results.severity)}>
@@ -230,7 +232,7 @@ export default function DiseaseDetection() {
                 <Card className="card-field">
                   <div className="flex items-center space-x-2 mb-4">
                     <Shield className="w-5 h-5 text-secondary" />
-                    <h4 className="font-semibold text-foreground">Treatment Recommendations</h4>
+                    <h4 className="font-semibold text-foreground">{t('disease.treatment')}</h4>
                   </div>
                   <div className="space-y-2">
                     {results.treatment.map((treatment, index) => (
@@ -246,7 +248,7 @@ export default function DiseaseDetection() {
                 <Card className="card-field">
                   <div className="flex items-center space-x-2 mb-4">
                     <TrendingDown className="w-5 h-5 text-accent" />
-                    <h4 className="font-semibold text-foreground">Prevention for Future</h4>
+                    <h4 className="font-semibold text-foreground">{t('disease.prevention')}</h4>
                   </div>
                   <div className="space-y-2">
                     {results.prevention.map((prevention, index) => (
