@@ -13,6 +13,7 @@ import Market from "./pages/Market";
 import Community from "./pages/Community";
 import Demo from "./pages/Demo";
 import NotFound from "./pages/NotFound";
+// import Auth from "./pages/Auth"
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/market" element={<Market />} />
             <Route path="/community" element={<Community />} />
             <Route path="/demo" element={<Demo />} />
+            {/* <Route path="/auth" element={<Auth/>}></Route> */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

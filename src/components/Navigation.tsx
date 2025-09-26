@@ -18,6 +18,8 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/hooks/useLanguage";
+import logo from './logo3.png';
+// import logo from '.';
 
 const navigationItems = [
   {
@@ -65,12 +67,14 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo & Brand */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-gradient-success rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-natural">
-              <Leaf className="w-6 h-6 text-white" />
+            <div className="w-20 h-20  flex items-center justify-center  transition-natural">
+              {/* <Leaf className="w-6 h-6 text-white" /> */}
+              <img src={logo} alt="" />
+
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-foreground">AgriWise</h1>
-              <p className="text-xs text-muted-foreground">Smart Farming Platform</p>
+              {/* <h1 className="text-xl font-bold text-foreground">AgriWise</h1> */}
+              {/* <p className="text-xs text-muted-foreground">Smart Farming Platform</p> */}
             </div>
           </Link>
 

@@ -91,7 +91,7 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  /* Agricultural Gradient Classes */
+  
   .bg-gradient-success {
     background: var(--gradient-success);
   }

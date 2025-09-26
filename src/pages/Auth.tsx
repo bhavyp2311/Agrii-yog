@@ -9,6 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Sprout } from "lucide-react";
+// import Index from "./Index";
+
 
 // Indian states with major cities and districts
 const INDIAN_LOCATIONS = {
@@ -170,6 +172,8 @@ export default function Auth() {
   };
 
   return (
+    <>
+      {/* <Index/> */}
     <div className="min-h-screen bg-gradient-to-br from-hero-green/5 via-background to-harvest-gold/5 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
@@ -322,5 +326,6 @@ export default function Auth() {
         </Tabs>
       </div>
     </div>
+    </>
   );
 }
