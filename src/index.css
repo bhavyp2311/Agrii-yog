@@ -95,6 +95,7 @@ All colors MUST be HSL.
   .bg-gradient-success {
     background: var(--gradient-success);
   }
+
   
   .bg-gradient-sky {
     background: var(--gradient-sky);

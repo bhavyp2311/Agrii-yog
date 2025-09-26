@@ -152,7 +152,6 @@ export default function Market() {
               </div>
             </div>
           </Card>
-
           <Card className="card-field">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-earth rounded-lg flex items-center justify-center">

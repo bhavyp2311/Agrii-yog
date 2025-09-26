@@ -339,6 +339,7 @@ const translations: Record<string, Translation> = {
     'features.communitySupportDesc': 'ਗਿਆਨ ਸਾਂਝਾਕਰਨ ਲਈ ਸਾਥੀ ਕਿਸਾਨਾਂ ਅਤੇ ਖੇਤੀਬਾੜੀ ਮਾਹਿਰਾਂ ਨਾਲ ਜੁੜੋ।',
 
     // AI Assistant
+    
     'ai.title': 'ਖੇਤੀ ਬਾਰੇ ਕੁਝ ਵੀ ਪੁੱਛੋ',
     'ai.subtitle': 'ਬੀਜਾਈ ਸਮਾਸੂਚੀ ਤੋਂ ਲੈ ਕੇ ਮਾਰਕੀਟ ਦੀ ਜਾਣਕਾਰੀ ਤੱਕ, ਆਪਣੇ ਖੇਤੀਬਾੜੀ ਸਵਾਲਾਂ ਦੇ ਤੁਰੰਤ ਜਵਾਬ ਪ੍ਰਾਪਤ ਕਰੋ।',
     'ai.quickQuestions': 'ਤੇਜ਼ ਸਵਾਲ',

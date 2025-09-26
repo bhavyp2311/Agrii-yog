@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "@/hooks/useLanguage";
 import heroImage from "@/assets/hero-agriculture.jpg";
 
+
 const features = [
   {
     icon: Leaf,

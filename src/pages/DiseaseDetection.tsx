@@ -81,7 +81,6 @@ export default function DiseaseDetection() {
       default: return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />

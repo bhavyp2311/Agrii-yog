@@ -162,6 +162,7 @@ export default function Navigation() {
           </div>
         </div>
 
+
         {/* Mobile Navigation Menu */}
         {isOpen && (
           <div className="md:hidden py-4 space-y-2">

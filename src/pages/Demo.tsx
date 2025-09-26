@@ -102,7 +102,6 @@ export default function Demo() {
                 Click on any feature below to try it yourself
               </p>
             </div>
-
             <div className="grid md:grid-cols-2 gap-8">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
